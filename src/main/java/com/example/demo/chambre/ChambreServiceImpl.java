@@ -22,7 +22,8 @@ public class ChambreServiceImpl implements ChambreService {
         String numero = chambre.getNumero();
         Optional<Chambre> optional = repo.findByNumero(numero);
         if (optional.isPresent()) {
-            throw new ObjectAlreadyExistException("chambre deja existe avec le numero : " + numero);
+            String message = "chambre deja existe avec le numero : ";
+            throw new ObjectAlreadyExistException(message + numero);
         }
         repo.save(chambre);
 
@@ -35,7 +36,6 @@ public class ChambreServiceImpl implements ChambreService {
         if (id == null) {
             throw new IdNullException("id non reconnu.");
         }
-
         repo.save(chambre);
         return chambre;
     }
@@ -55,7 +55,10 @@ public class ChambreServiceImpl implements ChambreService {
         Optional<Chambre> chambre = repo.findById(id);
 
         if (chambre.isPresent()) return chambre.get();
-        else throw new ObjectNotFoundException("aucun chambre trouvee avec id = " + id);
+        else {
+            String message = "aucun chambre trouvee avec id = ";
+            throw new ObjectNotFoundException(message + id);
+        }
 
     }
 
@@ -64,7 +67,10 @@ public class ChambreServiceImpl implements ChambreService {
         Optional<Chambre> chambre = repo.findByNumero(numero);
 
         if (chambre.isPresent()) return chambre.get();
-        else throw new ObjectNotFoundException("aucune chambre trouvee avec numero = " + numero);
+        else {
+            String message = "aucune chambre trouvee avec numero = ";
+            throw new ObjectNotFoundException(message + numero);
+        }
 
     }
 }

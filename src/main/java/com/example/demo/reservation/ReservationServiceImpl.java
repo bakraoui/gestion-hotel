@@ -49,7 +49,8 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation update(Reservation reservation) {
+    public Reservation update(Long id, Reservation reservation) {
+        reservation.setId(id);
         return reservationRepo.save(reservation);
     }
 

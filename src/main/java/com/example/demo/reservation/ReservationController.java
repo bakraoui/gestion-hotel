@@ -22,10 +22,10 @@ public class ReservationController {
                 );
     }
 
-    @PutMapping("")
-    public ResponseEntity<Reservation> update(@RequestBody Reservation reservation){
+    @PutMapping("/{id}")
+    public ResponseEntity<Reservation> update(@PathVariable Long id,@RequestBody Reservation reservation){
         return new ResponseEntity<>(
-                reservationService.update(reservation),
+                reservationService.update(id,reservation),
                 HttpStatus.CREATED
         );
     }

@@ -39,16 +39,18 @@ public class ClientServiceImpl implements ClientService {
             boolean is_exist = clientRepo.findByUserUsername(username).isEmpty();
 
             if (!is_exist){
-                throw new ObjectAlreadyExistException("ce nom d'utilisateur deja existe");
+                String message = "ce nom d'utilisateur deja existe";
+                throw new ObjectAlreadyExistException(message);
             } else {
                 // hash password
-                client.getUser().setPassword(passwordEncoder.encode(password));
+                String encodePassword = passwordEncoder.encode(password);
+                client.getUser().setPassword(encodePassword);
                 return clientRepo.save(client);
             }
 
         }else {
-            String exception = resultValidation.name();
-            throw new InvalideData(exception);
+            String message = resultValidation.name();
+            throw new InvalideData(message);
         }
 
     }

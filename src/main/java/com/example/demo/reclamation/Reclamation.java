@@ -30,7 +30,5 @@ public class Reclamation {
     @ManyToOne
     private Reservation reservation;
 
-    @OneToOne
-    private DemandeIntervention demandeIntervention;
 
 }
